@@ -92,6 +92,7 @@ h1 { font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin
 .link.on { border-color: var(--accent); }
 .player { display: flex; flex-direction: column; gap: 6px; padding: 2px 2px 4px; }
 .player audio { width: 100%; }
+.hint { color: var(--muted); font-size: 13px; }
 .player a { color: var(--accent); font-size: 13px; }
 .disclaimer { color: var(--muted); font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0; }
 .tip { color: var(--muted); font-size: 13px; text-align: center; margin: 0; }
@@ -154,7 +155,7 @@ h1 { font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin
       <p class="sub" id="count"></p>
     </div>
   </header>
-  <p class="disclaimer">Hinweis: Die verlinkten Inhalte sind urheberrechtlich gesch&uuml;tzt und d&uuml;rfen nur mit einer offiziellen Lizenz des Lehrmittels verwendet werden. Diese Seite enth&auml;lt selbst keine Inhalte, sondern nur Links.</p>
+  <p class="disclaimer">Hinweis: Die verlinkten Inhalte sind urheberrechtlich gesch&uuml;tzt und d&uuml;rfen nur mit einer offiziellen Lizenz des Lehrmittels verwendet werden. Diese Seite enth&auml;lt selbst keine Inhalte, sondern nur Links.<br><br><em lang="en">Notice: The linked content is protected by copyright and may only be used with an official licence for the textbook. This page does not contain any content itself, only links.</em></p>
   <input class="search" id="q" type="search" placeholder="Links suchen" autocomplete="off" aria-label="Links suchen">
   <main id="out"></main>
   <p class="tip">Tipp iPhone: In Safari auf Teilen tippen und &laquo;Zum Home-Bildschirm&raquo; w&auml;hlen.</p>
@@ -165,10 +166,20 @@ var LINKS = [
   { group: "Compact Advanced, Unit 1", name: "Audio Track 02", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/audio/1699000751874/Compact_Adv_2ed_Unit%201_Audio_Track02.mp3" },
   { group: "Compact Advanced, Unit 1", name: "Audio Track 03", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/audio/1699000751875/Compact_Adv_2ed_Unit%201_Audio_Track03.mp3" },
   { group: "Compact Advanced, Unit 1", name: "Audio Track 04", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/audio/1699000751876/Compact_Adv_2ed_Unit%201_Audio_Track04.mp3" },
-  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", name: "Video a \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid1" },
-  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", name: "Video b \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid2" },
-  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", name: "Video c \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid3" },
-  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", name: "Video d \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid4" }
+  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video a \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid1" },
+  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video b \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid2" },
+  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video c \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid3" },
+  { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video d \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid4" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 1 (Seite 1)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=1" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 2 (Seite 4)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=4" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 3 (Seite 7)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=7" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 4 (Seite 11)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=11" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 5 (Seite 14)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=14" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 6 (Seite 17)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=17" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 7 (Seite 20)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=20" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 8 (Seite 22)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=22" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 9 (Seite 26)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=26" },
+  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 10 (Seite 30)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=30" }
 ];
 
 var out = document.getElementById("out");
@@ -209,6 +220,9 @@ function makeItem(l) {
         var fr = document.createElement("iframe"); fr.className = "frame"; fr.src = l.url; fr.title = l.name;
         fr.setAttribute("allow", "autoplay; fullscreen; picture-in-picture"); fr.setAttribute("allowfullscreen", "");
         box.appendChild(fr);
+        var hint = document.createElement("div"); hint.className = "hint";
+        hint.textContent = "Bleibt das Fenster leer, erlaubt Cambridge das Einbetten nicht. Dann hilft der Link darunter.";
+        box.appendChild(hint);
       }
       var alt = document.createElement("a"); alt.href = l.url; alt.target = "_blank"; alt.rel = "noopener"; alt.textContent = "In neuem Tab öffnen";
       box.appendChild(alt); item.appendChild(box); a.classList.add("on");

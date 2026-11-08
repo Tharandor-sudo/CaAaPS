@@ -92,6 +92,12 @@ h1 { font-family: var(--font-display); font-size: 30px; line-height: 1.1; margin
 .link.on { border-color: var(--accent); }
 .player { display: flex; flex-direction: column; gap: 6px; padding: 2px 2px 4px; }
 .player audio { width: 100%; }
+.pdfbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pdfbar button { font: inherit; font-size: 15px; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; min-height: 40px; }
+.pdfbar button:disabled { opacity: .4; }
+.pdfbar span { color: var(--muted); font-size: 14px; }
+.pdfcanvas { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.pdfmsg { color: var(--muted); font-size: 14px; }
 .hint { color: var(--muted); font-size: 13px; }
 .player a { color: var(--accent); font-size: 13px; }
 .disclaimer { color: var(--muted); font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 0; }
@@ -170,16 +176,16 @@ var LINKS = [
   { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video b \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid2" },
   { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video c \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid3" },
   { group: "Compact Advanced, Unit 1", sub: "Grammar on the move", embed: true, name: "Video d \u2013 Review of verb tenses", url: "https://www.cambridge.org/CPA_Advanced_2ed_Vid4" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 1 (Seite 1)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=1" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 2 (Seite 4)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=4" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 3 (Seite 7)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=7" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 4 (Seite 11)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=11" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 5 (Seite 14)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=14" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 6 (Seite 17)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=17" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 7 (Seite 20)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=20" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 8 (Seite 22)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=22" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 9 (Seite 26)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=26" },
-  { group: "Lösungsschlüssel", name: "Student's Book AK \u2013 Unit 10 (Seite 30)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=30" }
+  { group: "Lösungsschlüssel", pdf: true, page: 1, name: "Student's Book AK \u2013 Unit 1 (Seite 1)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=1" },
+  { group: "Lösungsschlüssel", pdf: true, page: 4, name: "Student's Book AK \u2013 Unit 2 (Seite 4)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=4" },
+  { group: "Lösungsschlüssel", pdf: true, page: 7, name: "Student's Book AK \u2013 Unit 3 (Seite 7)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=7" },
+  { group: "Lösungsschlüssel", pdf: true, page: 11, name: "Student's Book AK \u2013 Unit 4 (Seite 11)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=11" },
+  { group: "Lösungsschlüssel", pdf: true, page: 14, name: "Student's Book AK \u2013 Unit 5 (Seite 14)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=14" },
+  { group: "Lösungsschlüssel", pdf: true, page: 17, name: "Student's Book AK \u2013 Unit 6 (Seite 17)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=17" },
+  { group: "Lösungsschlüssel", pdf: true, page: 20, name: "Student's Book AK \u2013 Unit 7 (Seite 20)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=20" },
+  { group: "Lösungsschlüssel", pdf: true, page: 22, name: "Student's Book AK \u2013 Unit 8 (Seite 22)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=22" },
+  { group: "Lösungsschlüssel", pdf: true, page: 26, name: "Student's Book AK \u2013 Unit 9 (Seite 26)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=26" },
+  { group: "Lösungsschlüssel", pdf: true, page: 30, name: "Student's Book AK \u2013 Unit 10 (Seite 30)", url: "https://content.cambridgeone.org/cup1/products/cmpa2edc1insbrbak/6/assets/pdf/1699000751934/Compact%20Advanced%20Student's%20Book%20AK.pdf.pdf?inline=true#page=30" }
 ];
 
 var out = document.getElementById("out");
@@ -196,6 +202,79 @@ function closePlayers() {
   document.querySelectorAll(".link.on").forEach(function (x) { x.classList.remove("on"); });
 }
 
+
+var pdfjsReady = null, pdfDocs = {};
+var PDFJS_BASE = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+function loadPdfJs() {
+  if (pdfjsReady) return pdfjsReady;
+  pdfjsReady = new Promise(function (res, rej) {
+    var sc = document.createElement("script"); sc.src = PDFJS_BASE + "pdf.min.js";
+    sc.onload = function () {
+      var lib = window.pdfjsLib;
+      fetch(PDFJS_BASE + "pdf.worker.min.js").then(function (r) { return r.text(); }).then(function (t) {
+        lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(new Blob([t], { type: "text/javascript" }));
+        res(lib);
+      }).catch(function () { lib.GlobalWorkerOptions.workerSrc = PDFJS_BASE + "pdf.worker.min.js"; res(lib); });
+    };
+    sc.onerror = function () { pdfjsReady = null; rej(new Error("pdfjs")); };
+    document.head.appendChild(sc);
+  });
+  return pdfjsReady;
+}
+function getPdf(url) {
+  var clean = url.split("#")[0];
+  if (!pdfDocs[clean]) {
+    pdfDocs[clean] = loadPdfJs().then(function (lib) { return lib.getDocument({ url: clean }).promise; });
+    pdfDocs[clean].catch(function () { delete pdfDocs[clean]; });
+  }
+  return pdfDocs[clean];
+}
+function buildPdfViewer(box, l) {
+  var n = l.page, total = 0, token = 0, task = null;
+  var bar = document.createElement("div"); bar.className = "pdfbar";
+  var prev = document.createElement("button"); prev.type = "button"; prev.textContent = "‹ Zurück";
+  var info = document.createElement("span"); info.textContent = "Lade …";
+  var next = document.createElement("button"); next.type = "button"; next.textContent = "Weiter ›";
+  bar.appendChild(prev); bar.appendChild(info); bar.appendChild(next);
+  var canvas = document.createElement("canvas"); canvas.className = "pdfcanvas";
+  prev.disabled = next.disabled = true;
+  box.appendChild(bar); box.appendChild(canvas);
+
+  function fail() {
+    bar.remove(); canvas.remove();
+    var m = document.createElement("div"); m.className = "pdfmsg";
+    m.textContent = "Die Anzeige direkt auf dieser Seite ist nicht möglich. Springt das PDF im neuen Tab nicht auf die richtige Stelle, gehe selbst auf Seite " + l.page + ".";
+    box.insertBefore(m, box.firstChild);
+  }
+  function show(num) {
+    var my = ++token;
+    prev.disabled = next.disabled = true;
+    getPdf(l.url).then(function (doc) {
+      total = doc.numPages; n = Math.min(Math.max(1, num), total);
+      return doc.getPage(n);
+    }).then(function (page) {
+      if (my !== token) return;
+      var w = box.clientWidth || 340, dpr = window.devicePixelRatio || 1;
+      var scale = w / page.getViewport({ scale: 1 }).width;
+      var vp = page.getViewport({ scale: scale * dpr });
+      canvas.width = vp.width; canvas.height = vp.height;
+      if (task) { try { task.cancel(); } catch (e) {} }
+      task = page.render({ canvasContext: canvas.getContext("2d"), viewport: vp });
+      return task.promise.then(function () {
+        if (my !== token) return;
+        info.textContent = "Seite " + n + " von " + total;
+        prev.disabled = n <= 1; next.disabled = n >= total;
+      });
+    }).catch(function (err) {
+      if (err && err.name === "RenderingCancelledException") return;
+      if (my === token) fail();
+    });
+  }
+  prev.addEventListener("click", function () { show(n - 1); });
+  next.addEventListener("click", function () { show(n + 1); });
+  show(n);
+}
+
 function makeItem(l) {
   var a = document.createElement("a");
   a.className = "link"; a.href = l.url; a.target = "_blank"; a.rel = "noopener";
@@ -206,14 +285,16 @@ function makeItem(l) {
   var item = document.createElement("div"); item.className = "item";
   item.appendChild(a);
   var isAudio = /\.mp3($|\?)/i.test(l.url);
-  if (isAudio || l.embed) {
+  if (isAudio || l.embed || l.pdf) {
     a.addEventListener("click", function (ev) {
       ev.preventDefault();
       var wasOpen = item.querySelector(".player");
       closePlayers();
       if (wasOpen) return;
       var box = document.createElement("div"); box.className = "player";
-      if (isAudio) {
+      if (l.pdf) {
+        buildPdfViewer(box, l);
+      } else if (isAudio) {
         var au = document.createElement("audio"); au.controls = true; au.autoplay = true; au.preload = "auto"; au.src = l.url;
         box.appendChild(au);
       } else {
@@ -224,7 +305,7 @@ function makeItem(l) {
         hint.textContent = "Bleibt das Fenster leer, erlaubt Cambridge das Einbetten nicht. Dann hilft der Link darunter.";
         box.appendChild(hint);
       }
-      var alt = document.createElement("a"); alt.href = l.url; alt.target = "_blank"; alt.rel = "noopener"; alt.textContent = "In neuem Tab öffnen";
+      var alt = document.createElement("a"); alt.href = l.url; alt.target = "_blank"; alt.rel = "noopener"; alt.textContent = l.pdf ? "PDF in neuem Tab öffnen (Seite " + l.page + ")" : "In neuem Tab öffnen";
       box.appendChild(alt); item.appendChild(box); a.classList.add("on");
     });
   }
